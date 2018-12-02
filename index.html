@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/8.0.1/bignumber.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="archive/script2.js"></script>
+</head>
+<body>
+<div id="overlay">
+    <div class="loading">
+        <div class="loading-text">
+            <span class="loading-text-words">L</span>
+            <span class="loading-text-words">O</span>
+            <span class="loading-text-words">A</span>
+            <span class="loading-text-words">D</span>
+            <span class="loading-text-words">I</span>
+            <span class="loading-text-words">N</span>
+            <span class="loading-text-words">G</span>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="py-5 text-center">
+        <!--<img class="d-block mx-auto mb-4" src="p3d-dark.png" style="height:100px;">-->
+        <h2>P3X Exchange</h2>
+        <div id="network-name">Loading...</div>
+        <p class="lead">P3X is an Ethereum Smart Contract.<br/>You can use this site to access the goodness.</p>
+
+        <a class="p3x-contract-etherscan-link" href="" target="_blank">View P3X Contract</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="p3d-contract-etherscan-link" href="" target="_blank">View P3D Contract</a>
+    </div>
+    <!--Buy, Stats, Sell-->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-xl-4">
+                            <h5 class="card-title text-center">Buy P3X</h5>
+                            <div class="input-group mb-3" style="cursor:not-allowed;">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">&nbsp;&nbsp;&nbsp;Price:&nbsp;&nbsp;&nbsp;</span>
+                                </div>
+                                <input id="buy-eth-price" type="number" class="form-control" style="pointer-events: none;">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">ETH</span>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3" style="cursor:not-allowed;">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text special-text">Amount:&nbsp;</span>
+                                </div>
+                                <input id="buy-eth-amount" type="number" class="form-control" style="pointer-events: none;" value="0">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">P3X</span>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">&nbsp;&nbsp;&nbsp;Total:&nbsp;&nbsp;&nbsp;</span>
+                                </div>
+                                <input id="buy-eth-total" type="number" class="form-control" value="1">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">ETH</span>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary btn-block buy">Buy</button>
+                        </div>
+                        <div class="col-xl-4">
+                            <h5 class="card-title text-center" style="margin-bottom:3px;">Global Statistics</h5>
+                            <table class="text-center" style="width:100%;">
+                                <tr>
+                                    <td style="font-size: 14px;text-align: left;vertical-align: top;">Contract Balance:</td>
+                                    <td style="font-size: 14px;text-align: right;">
+                                        <div style="font-size: 15px;text-align: right;" id="txt-p3d-eth-balance">0.00 ETH</div>
+                                        <div style="font-size: 15px;text-align: right;" id="txt-p3d-eth-balance-usd">0.00 ETH</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 14px;text-align: left;">Total Supply:</td>
+                                    <td style="font-size: 14px;text-align: right;">
+                                        <div style="font-size: 15px;text-align: right;" id="txt-p3d-total-supply">0.00 P3D</div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <h5 class="card-title text-center mt-4" style="margin-bottom:3px;">Your Holdings</h5>
+                            <table class="text-center" style="width:100%;">
+                                <tr>
+                                    <td style="font-size: 14px;text-align: left;">Total Balance:</td>
+                                    <td style="font-size: 14px;text-align: right;" id="txt-p3x-balance">0.00 P3X</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 14px;text-align: left;">Available Balance:</td>
+                                    <td style="font-size: 14px;text-align: right;" id="txt-p3x-usable-balance">0.00 P3X</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 14px;text-align: left;">Dividend Earnings:</td>
+                                    <td style="font-size: 14px;text-align: right;" id="txt-dividends">0.00 ETH</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 14px;text-align: left;">Referral Reanings:</td>
+                                    <td style="font-size: 14px;text-align: right;" id="txt-referrals">0.00 ETH</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-xl-4">
+                            <h5 class="card-title text-center">Sell P3X</h5>
+                            <div class="input-group mb-3" style="cursor:not-allowed;">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">&nbsp;&nbsp;&nbsp;Price:&nbsp;&nbsp;&nbsp;</span>
+                                </div>
+                                <input id="sell-eth-price" type="number" class="form-control" style="pointer-events: none;">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">ETH</span>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Amount:&nbsp;</span>
+                                </div>
+                                <input id="sell-amount-p3x" type="number" class="form-control" value="10">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">P3X</span>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="input-group mb-3" style="cursor:not-allowed;">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">&nbsp;&nbsp;&nbsp;Total:&nbsp;&nbsp;&nbsp;</span>
+                                </div>
+                                <input id="sell-eth-total" type="number" class="form-control" style="pointer-events: none;">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">ETH</span>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary btn-block sell">Sell</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Reinvest, Withdraw-->
+    <div class="row">
+        <div class="col-12 mt-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                            <h5 class="card-title text-center">Reinvest Dividends</h5>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <ul class="reinvest-tabs nav nav-pills nav-justified mb-3  text-center" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="pill" href="#tab-reinvest-all" role="tab" aria-selected="true"> All Divs </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="pill" href="#tab-reinvest-partial" role="tab" aria-selected="false"> Partial Divs </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="tab-reinvest-all" role="tabpanel">
+                                    <button id="btn-reinvest-all" type="button" class="btn btn-primary btn-block">Reinvest</button>
+                                </div>
+                                <div class="tab-pane fade" id="tab-reinvest-partial" role="tabpanel">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Reinvest Amount:</span>
+                                        </div>
+                                        <input id="reinvest-eth-amount" type="text" class="form-control">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">ETH</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-8 col-form-label">Withdraw Remaining Divs After Reinvestment:</label>
+                                        <div class="col-4 text-right">
+                                            <div class="btn-group btn-group-toggle pull-right" data-toggle="buttons">
+                                                <label class="withdraw-after-reinvest btn btn-sm btn-outline-primary active">
+                                                    <input class="withdraw-after" type="radio" name="withdraw-after" autocomplete="off" value="no" checked> No
+                                                </label>
+                                                <label class="withdraw-after-reinvest btn btn-sm btn-outline-primary">
+                                                    <input class="withdraw-after" type="radio" name="withdraw-after" autocomplete="off" value="yes"> Yes
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button id="btn-reinvest-partial" type="button" class="btn btn-primary btn-block">Reinvest</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                            <h5 class="card-title text-center">Withdraw Dividends</h5>
+                            <div class="form-group row">
+                                <div class="col-12 text-center">
+                                    <div class="input-group mb-3" style="cursor:not-allowed;">
+                                        <input id="txt-eth-withdraw" type="text" class="form-control text-center" style="pointer-events: none;">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">ETH</span>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-block mt-3">Withdraw</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Gauntlets-->
+    <div class="row">
+        <div class="col-12 mt-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                            <div class="text-center">
+                                <h5 class="card-title" style="display: inline-block;padding-left:55px;text-align: center;">
+                                    Acquire Staking Gauntlet
+                                </h5>
+                                <a href="#" onclick="return false;" style="font-size:16px;float:right; font-weight:normal;" data-toggle="modal" data-target="#modal-gauntlet-details">
+                                    <i class="far fa-question-circle"></i>
+                                </a>
+                            </div>
+                            <div class="form-group row">
+                                <!--<label class="col-4 col-form-label">Gauntlet Type:</label>-->
+                                <div class="col-12 text-center">
+                                    <ul class="gauntlet-tabs nav nav-pills nav-justified text-center" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true"> Time Based </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">P3D Supply Based</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                    <div class="form-group row">
+                                        <div class="col-12 text-left">
+                                            <div class="input-group">
+                                                <div class="input-group-preppend">
+                                                    <div class="input-group-text">End Date:</div>
+                                                </div>
+                                                <input type="text" class="form-control datetimepicker-input date" data-toggle="datetimepicker" id="datetimepicker1" data-target-input="nearest"
+                                                       data-target="#datetimepicker1"/>
+                                                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
+                                            <div id="txt-must-stake-until" class="text-muted">Must Stake Until At Least: Loading...</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-12 text-right">
+                                            <div class="input-group">
+                                                <div class="input-group-preppend">
+                                                    <div class="input-group-text">P3X to Stake:</div>
+                                                </div>
+                                                <input id="time-based-gauntlet-amount" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" id="time-based-gauntlet-acquire" class="btn btn-primary btn-block">Stake Gauntlet</button>
+                                </div>
+                                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                    <div class="form-group row">
+                                        <div class="col-12 text-left">
+                                            <div class="input-group">
+                                                <div class="input-group-preppend">
+                                                    <div class="input-group-text">End Supply:</div>
+                                                </div>
+                                                <input id="supply-based-gauntlet-supply" type="text" class="form-control">
+                                            </div>
+                                            <div id="txt-minimum-supply" class="text-muted">Minimum Supply: Loading...</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-12 text-right">
+                                            <div class="input-group">
+                                                <div class="input-group-preppend">
+                                                    <div class="input-group-text">P3X to Stake:</div>
+                                                </div>
+                                                <input id="supply-based-gauntlet-amount" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" id="supply-based-gauntlet-acquire" class="btn btn-primary btn-block">Stake Gauntlet</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                            <div class="text-center">
+                                <h5 class="card-title" style="display: inline-block;padding-left:55px;text-align: center;">
+                                    Current Gauntlet
+                                </h5>
+                                <a href="#" onclick="return false;" style="font-size:16px;float:right; font-weight:normal;" data-toggle="modal" data-target="#modal-gauntlet-upgrade">
+                                    <i class="far fa-question-circle"></i>
+                                </a>
+                            </div>
+                            <div class="row">
+                                <label class="col-5 col-form-label">Gauntlet Type:</label>
+                                <p id="current-gauntlet-type" class="col-7 text-right" style="font-size:18px;margin-bottom:0;">N/A</p>
+                            </div>
+                            <div class="row">
+                                <label id="current-gauntlet-end" class="col-5 col-form-label">Gauntlet End Date:</label>
+                                <p id="current-gauntlet-time" class="col-7 text-right" style="font-size:18px;margin-bottom:0;">N/A</p>
+                            </div>
+                            <div class="row">
+                                <label class="col-5 col-form-label" style="padding-top:3px;">Gauntlet Amount:</label>
+                                <div class="col-7 text-right" style="margin-bottom:15px;">
+                                    <div id="current-gauntlet-amount" style="height:23px;font-size:18px;">N/A</div>
+                                    <div id="current-gauntlet-amount-usd" style="height:19px;font-size:13px;">N/A</div>
+                                    <div id="current-gauntlet-amount-eth" style="height:19px;font-size:13px;">N/A</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="col-12 text-left text-muted" style="font-size:13px;margin-bottom:0;">
+                                    The staked P3X will be unlocked when the Gauntlet End value is reached.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Master node-->
+    <div class="row">
+        <div class="col-12 mt-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6 text-center">
+                            <h5 class="card-title" style="display: inline-block;padding-left:10px;">
+                                Masternode
+                            </h5>
+                            <p style="font-size:13px;margin-bottom:10px;">
+                                Share your masternode to earn extra ETH. If someone buys with your masternode, it will be saved and used next time they buy.
+                                You can also set it with Set Referrer.
+                            </p>
+                            <label class="col-12 mt-2" style="margin-bottom:0;">Address Masternode</label>
+                            <a id="masternode-link-address" href="#" style="font-size:13px;">Loading...</a>
+                            <!--<br/>-->
+                            <!--<label class="col-12" style="margin-bottom:0;margin-top:10px;">Vanity Masternode</label>-->
+                            <!--<a id="masternode-link-vanity" href="#" style="font-size:13px;">Loading...</a>-->
+                        </div>
+                        <div class="col-6">
+                            <h5 class="card-title text-center">Set Referrer</h5>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Address:</span>
+                                </div>
+                                <input id="referrer-address" type="text" class="form-control">
+                            </div>
+                            <button id="btn-set-referrer" type="button" class="btn btn-primary btn-block">Set Referrer</button>
+
+                            <p id="txt-current-referrer" class="mt-2" style="font-size: 14px;">Current Referrer: </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Buy Vanity, Purchased Vanities-->
+    <!--<div class="row">-->
+        <!--<div class="col-12 mt-4">-->
+            <!--<div class="card">-->
+                <!--<div class="card-body">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-6">-->
+                            <!--<div style="text-align: center;">-->
+                                <!--<a style="font-size:12px;float:left; font-weight:normal;" href="https://etherscan.io/address/0xD60d353610D9a5Ca478769D371b53CEfAA7B6E4c#code" target="_blank">Playerbook-->
+                                    <!--Contract</a>-->
+                                <!--<h5 class="card-title" style="display: inline-block;padding-right:70px;">-->
+                                    <!--Buy Vanity Name-->
+                                <!--</h5>-->
+                                <!--<a href="#" onclick="return false;" style="font-size:16px;float:right; font-weight:normal;" data-toggle="modal" data-target="#modal-vanity">-->
+                                    <!--<i class="far fa-question-circle"></i>-->
+                                <!--</a>-->
+                            <!--</div>-->
+
+                            <!--<div class="form-group row" style="margin-bottom:0;">-->
+                                <!--<div class="col-12 text-center">-->
+                                    <!--<div class="input-group mb-3">-->
+                                        <!--<div class="input-group-prepend">-->
+                                            <!--<span class="input-group-text">Vanity Name:</span>-->
+                                        <!--</div>-->
+                                        <!--<input id="txt-vanity-name" type="text" class="form-control text-left">-->
+                                    <!--</div>-->
+                                    <!--<button type="button" class="btn btn-primary btn-block mt-3" id="btn-buy-vanity">Buy Name</button>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="col-6">-->
+                            <!--<h5 class="card-title text-center">Purchased Vanity Names</h5>-->
+                            <!--<ul id="list-past-vanities" class="list-group">-->
+                                <!--<li class="list-group-item">Loading Names...</li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--Transfer, Exit-->
+    <div class="row">
+        <div class="col-12 mt-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <h5 class="card-title text-center">Transfer P3X</h5>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Amount:</span>
+                                </div>
+                                <input id="transfer-p3x-amount" type="number" class="form-control">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">P3X</span>
+                                </div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Address:</span>
+                                </div>
+                                <input id="transfer-p3x-address" type="text" class="form-control">
+                            </div>
+                            <button id="btn-transfer" type="button" class="btn btn-primary btn-block">Transfer</button>
+
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                            <div style="text-align: center;">
+                                <h5 class="card-title" style="display: inline-block;">
+                                    Exit P3X
+                                </h5>
+                            </div>
+                            <div class="form-group row" style="margin-bottom:0;">
+                                <div class="col-12 text-center">
+                                    <p style="font-size:13px;">Are you done earning free ETH? Want to get out? Exit will immediately sell all your P3X and withdraw the ETH to your wallet.
+                                        You cannot Exit with an active Gauntlet.</p>
+                                </div>
+                            </div>
+                            <div class="form-group row" style="margin-bottom:0;">
+                                <div class="col-12 text-center">
+                                    <button type="button" id="exit" class="btn btn-primary btn-block">Exit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017-2032 The Interwebs</p>
+    </footer>
+</div>
+</div>
+
+
+<div class="modal fade" id="modal-gauntlet-upgrade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Upgrading Gauntlets</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        You can upgrade a Gauntlet under these conditions.
+                        <or>
+                            <li>The Upgrade Gauntlet must be the same type as the existing one.</li>
+                            <li>The End Value must be more than the existing Gauntlet.</li>
+                            <li>The P3X Stake amount must be more than the existing Gauntlet.</li>
+                        </or>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-gauntlet-details" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Gauntlet Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Coming Soon - How to use gauntlets.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
