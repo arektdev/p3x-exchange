@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://bootswatch.com/4/cyborg/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -17,24 +17,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/8.0.1/bignumber.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="script2.js"></script>
+    <script src="archive/script.js"></script>
 </head>
 <body>
-<div id="overlay">
-    <div class="loading">
-        <div class="loading-text">
-            <span class="loading-text-words">L</span>
-            <span class="loading-text-words">O</span>
-            <span class="loading-text-words">A</span>
-            <span class="loading-text-words">D</span>
-            <span class="loading-text-words">I</span>
-            <span class="loading-text-words">N</span>
-            <span class="loading-text-words">G</span>
-            <span class="loading-text-words">.</span>
-            <span class="loading-text-words">.</span>
-            <span class="loading-text-words">.</span>
-        </div>
-    </div>
+<div id="loading-animation">
+<img src="loading.gif">
 </div>
 <div class="container">
     <div class="py-5 text-center">
@@ -53,7 +40,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-xl-4">
+                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-2">
                             <h5 class="card-title text-center">Buy P3X</h5>
                             <div class="input-group mb-3" style="cursor:not-allowed;">
                                 <div class="input-group-prepend">
@@ -83,9 +70,9 @@
                                     <span class="input-group-text">ETH</span>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-primary btn-block buy">Buy</button>
+                            <button id="btn-buy" type="button" class="btn btn-primary btn-block">Buy</button>
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-2">
                             <h5 class="card-title text-center" style="margin-bottom:3px;">Global Statistics</h5>
                             <table class="text-center" style="width:100%;">
                                 <tr>
@@ -123,7 +110,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="col-xl-4">
+                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 mb-2">
                             <h5 class="card-title text-center">Sell P3X</h5>
                             <div class="input-group mb-3" style="cursor:not-allowed;">
                                 <div class="input-group-prepend">
@@ -153,7 +140,7 @@
                                     <span class="input-group-text">ETH</span>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-primary btn-block sell">Sell</button>
+                            <button id="btn-sell" type="button" class="btn btn-primary btn-block">Sell</button>
                         </div>
                     </div>
                 </div>
@@ -167,7 +154,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                             <h5 class="card-title text-center">Reinvest Dividends</h5>
                             <div class="row">
                                 <div class="col-12 text-center">
@@ -183,7 +170,7 @@
                             </div>
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="tab-reinvest-all" role="tabpanel">
-                                    <button id="btn-reinvest-all" type="button" class="btn btn-primary btn-block">Reinvest</button>
+                                    <button id="btn-reinvest" type="button" class="btn btn-primary btn-block">Reinvest</button>
                                 </div>
                                 <div class="tab-pane fade" id="tab-reinvest-partial" role="tabpanel">
                                     <div class="input-group mb-3">
@@ -212,9 +199,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                             <h5 class="card-title text-center">Withdraw Dividends</h5>
-                            <div class="form-group row">
+                            <div class="form-group row mb-0">
                                 <div class="col-12 text-center">
                                     <div class="input-group mb-3" style="cursor:not-allowed;">
                                         <input id="txt-eth-withdraw" type="text" class="form-control text-center" style="pointer-events: none;">
@@ -222,7 +209,7 @@
                                             <span class="input-group-text">ETH</span>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-primary btn-block mt-3">Withdraw</button>
+                                    <button id="btn-withdraw" type="button" class="btn btn-primary btn-block mt-3">Withdraw</button>
                                 </div>
                             </div>
                         </div>
@@ -238,7 +225,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                             <div class="text-center">
                                 <h5 class="card-title" style="display: inline-block;padding-left:55px;text-align: center;">
                                     Acquire Staking Gauntlet
@@ -274,7 +261,7 @@
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
                                             </div>
-                                            <div id="txt-must-stake-until" class="text-muted">Must Stake Until At Least: Loading...</div>
+                                            <div id="txt-must-stake-until" class="text-muted" style="font-size:12px;">Must Stake Until At Least: Loading...</div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -298,7 +285,7 @@
                                                 </div>
                                                 <input id="supply-based-gauntlet-supply" type="text" class="form-control">
                                             </div>
-                                            <div id="txt-minimum-supply" class="text-muted">Minimum Supply: Loading...</div>
+                                            <div id="txt-minimum-supply" class="text-muted" style="font-size:12px;">Minimum Supply: Loading...</div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -315,7 +302,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                             <div class="text-center">
                                 <h5 class="card-title" style="display: inline-block;padding-left:55px;text-align: center;">
                                     Current Gauntlet
@@ -336,13 +323,13 @@
                                 <label class="col-5 col-form-label" style="padding-top:3px;">Gauntlet Amount:</label>
                                 <div class="col-7 text-right" style="margin-bottom:15px;">
                                     <div id="current-gauntlet-amount" style="height:23px;font-size:18px;">N/A</div>
-                                    <div id="current-gauntlet-amount-usd" style="height:19px;font-size:13px;">N/A</div>
-                                    <div id="current-gauntlet-amount-eth" style="height:19px;font-size:13px;">N/A</div>
+                                    <div id="current-gauntlet-amount-usd" style="height:23px;font-size:18px;margin-top:0px;">N/A</div>
+                                    <div id="current-gauntlet-amount-eth" style="height:23px;font-size:18px;">N/A</div>
                                 </div>
                             </div>
                             <div class="row">
-                                <p class="col-12 text-left text-muted" style="font-size:13px;margin-bottom:0;">
-                                    The staked P3X will be unlocked when the Gauntlet End value is reached.
+                                <p class="col-12 text-left" style="font-size:13px;margin-bottom:0;">
+                                    The staked P3X will be unlocked when the Gauntlet End value is reached. <br/>Go long and become a Gauntlet Legend!
                                 </p>
                             </div>
                         </div>
@@ -358,21 +345,20 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-6 text-center">
-                            <h5 class="card-title" style="display: inline-block;padding-left:10px;">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2 text-center">
+                            <h5 class="card-title" style="display: inline-block;padding-left:10px;margin-bottom:6px;">
                                 Masternode
                             </h5>
-                            <p style="font-size:13px;margin-bottom:10px;">
+                            <p style="font-size:13px;margin-bottom:8px;">
                                 Share your masternode to earn extra ETH. If someone buys with your masternode, it will be saved and used next time they buy.
                                 You can also set it with Set Referrer.
                             </p>
-                            <label class="col-12 mt-2" style="margin-bottom:0;">Address Masternode</label>
+                            <label class="col-12 mt-0" style="margin-bottom:0;font-size:13px;">Minimum Tokens for Masternode</label>
+                            <span id="txt-staking-requirement" style="font-size:13px;color:var(--green);">Loading...</span>
+                            <label class="col-12 mt-1" style="margin-bottom:0;font-size:13px;">Your Masternode</label>
                             <a id="masternode-link-address" href="#" style="font-size:13px;">Loading...</a>
-                            <!--<br/>-->
-                            <!--<label class="col-12" style="margin-bottom:0;margin-top:10px;">Vanity Masternode</label>-->
-                            <!--<a id="masternode-link-vanity" href="#" style="font-size:13px;">Loading...</a>-->
                         </div>
-                        <div class="col-6">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                             <h5 class="card-title text-center">Set Referrer</h5>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -382,7 +368,7 @@
                             </div>
                             <button id="btn-set-referrer" type="button" class="btn btn-primary btn-block">Set Referrer</button>
 
-                            <p id="txt-current-referrer" class="mt-2" style="font-size: 14px;">Current Referrer: </p>
+                            <p id="txt-current-referrer" class="mt-2 mb-0" style="font-size: 14px;">Current Referrer: </p>
                         </div>
                     </div>
                 </div>
@@ -390,55 +376,13 @@
         </div>
     </div>
 
-    <!--Buy Vanity, Purchased Vanities-->
-    <!--<div class="row">-->
-        <!--<div class="col-12 mt-4">-->
-            <!--<div class="card">-->
-                <!--<div class="card-body">-->
-                    <!--<div class="row">-->
-                        <!--<div class="col-6">-->
-                            <!--<div style="text-align: center;">-->
-                                <!--<a style="font-size:12px;float:left; font-weight:normal;" href="https://etherscan.io/address/0xD60d353610D9a5Ca478769D371b53CEfAA7B6E4c#code" target="_blank">Playerbook-->
-                                    <!--Contract</a>-->
-                                <!--<h5 class="card-title" style="display: inline-block;padding-right:70px;">-->
-                                    <!--Buy Vanity Name-->
-                                <!--</h5>-->
-                                <!--<a href="#" onclick="return false;" style="font-size:16px;float:right; font-weight:normal;" data-toggle="modal" data-target="#modal-vanity">-->
-                                    <!--<i class="far fa-question-circle"></i>-->
-                                <!--</a>-->
-                            <!--</div>-->
-
-                            <!--<div class="form-group row" style="margin-bottom:0;">-->
-                                <!--<div class="col-12 text-center">-->
-                                    <!--<div class="input-group mb-3">-->
-                                        <!--<div class="input-group-prepend">-->
-                                            <!--<span class="input-group-text">Vanity Name:</span>-->
-                                        <!--</div>-->
-                                        <!--<input id="txt-vanity-name" type="text" class="form-control text-left">-->
-                                    <!--</div>-->
-                                    <!--<button type="button" class="btn btn-primary btn-block mt-3" id="btn-buy-vanity">Buy Name</button>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="col-6">-->
-                            <!--<h5 class="card-title text-center">Purchased Vanity Names</h5>-->
-                            <!--<ul id="list-past-vanities" class="list-group">-->
-                                <!--<li class="list-group-item">Loading Names...</li>-->
-                            <!--</ul>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
     <!--Transfer, Exit-->
     <div class="row">
         <div class="col-12 mt-4">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                             <h5 class="card-title text-center">Transfer P3X</h5>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -458,7 +402,7 @@
                             <button id="btn-transfer" type="button" class="btn btn-primary btn-block">Transfer</button>
 
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                             <div style="text-align: center;">
                                 <h5 class="card-title" style="display: inline-block;">
                                     Exit P3X
@@ -481,7 +425,6 @@
             </div>
         </div>
     </div>
-
 
     <footer class="my-5 pt-5 text-muted text-center text-small">
         <p class="mb-1">&copy; 2017-2032 The Interwebs</p>
@@ -518,7 +461,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="modal-gauntlet-details" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
