@@ -1147,7 +1147,7 @@ const P3X = {
             this.MN = '';
         }
         if (parseFloat(this.contractValues.balanceOf) >= parseFloat(this.contractValues.stakingRequirement)) {
-            let path = window.location.protocol + '//' + window.location.hostname;
+            let path = window.location.protocol + '//' + window.location.hostname + '/p3x-exchange';
             $('#masternode-link-address').attr('href', path + '/?mn=' + this.web3.eth.accounts[0]).text(path + '/?mn=' + this.web3.eth.accounts[0]);
         }
         else {
@@ -1226,7 +1226,6 @@ const P3X = {
         }
         try {
             refBonusOf = await promisify(cb => that.P3XTokenContract.refBonusOf(that.web3.eth.accounts[0], cb));
-
         }
         catch (error) {
             console.log(error);
@@ -1271,7 +1270,7 @@ const P3X = {
             totalGauntletEthAmt: that.web3.fromWei(totalGauntletEthAmt, 'ether').toFixed(4),
             totalBalanceEthAmt: that.web3.fromWei(totalBalanceEthAmt, 'ether').toFixed(4),
         };
-        console.log(this.contractValues);
+        //console.log(this.contractValues);
     },
     _getURL: function (query) {
         //used for maternodes
@@ -1451,11 +1450,11 @@ const P3X = {
         this._eventListener_KeyUps();
         this._eventListener_Currency();
         this._watchAccount();
+        this._hideOverlay();
 
-        await this._hideOverlay();
         let that = this;
         setInterval(function () {
-            console.time('Updated');
+            console.log('Updated data.');
             that._getNetwork();
             that._getData();
             that._getExchangePrices();
