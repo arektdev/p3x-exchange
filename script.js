@@ -1084,6 +1084,7 @@ const P3X = {
         $('#txt-total-dividends').text(dividendsOf + ' ETH');
     },
     _setMyGauntlets: async function () {
+        //build gauntlet details
         try {
             let that = this, gauntletType = 0, gauntletEnd = 0, gauntletAmount = 0, myGauntlets = [], day = 0;
             myGauntlets = this.contractValues.myGauntlets;
@@ -1332,7 +1333,7 @@ const P3X = {
         let that = this;
         $.ajax({
             context: that,
-            async: false,
+            async: true,
             cache: false,
             type: 'get',
             dataType: 'json',
@@ -1340,6 +1341,8 @@ const P3X = {
             url: "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=XMR,BTC,USD,EUR,CAD,JPY,GBP",
             success: async function (result) {
                 that.fiatPrice = result;
+                that._getCurrency();
+                that._setFiatPrices();
             }
         });
     },
@@ -1412,7 +1415,7 @@ const P3X = {
     _setMainValues: async function () {
         await this._setMyGauntlets();
         this._setMasternode();
-        this._getCurrency();
+        //this._getCurrency();
         this._setUsableBalanceOf();
         this._setBalanceOf();
         this._setDividendsOf();
@@ -1424,12 +1427,11 @@ const P3X = {
         this._setP3DSellPrice();
         this._setSavedReferral();
         this._setStakingRequirement();
-        this._eventListener_Currency();
+        //this._setFiatPrices();
     },
     start: async function (_web3) {
         window.p3x = this;
         this.web3 = _web3;
-        console.log(window.p3x);
         this._init();
         await this._getNetwork();
         await this._getData();
@@ -1447,17 +1449,17 @@ const P3X = {
         this._eventListener_AcquiredSupplyGauntlet();
         this._eventListener_Exit();
         this._eventListener_KeyUps();
-        this._setFiatPrices();
+        this._eventListener_Currency();
         this._watchAccount();
 
         await this._hideOverlay();
         let that = this;
         setInterval(function () {
-            console.log('Updated data.');
+            console.time('Updated');
             that._getNetwork();
             that._getData();
             that._getExchangePrices();
             that._setMainValues();
-        }, 60000);
+        }, 120000);
     }
 };
