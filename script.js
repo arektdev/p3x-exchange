@@ -1311,7 +1311,7 @@ const P3X = {
                 case "3":
                     $('#network-name').html('<span style="font-size:14px;">Network:</span> <b>Ropsten</b>');
                     that.etherscanAddr = 'https://ropsten.etherscan.io';
-                    that.P3XTokenAddress = '0xcd45a142d109bbc8b22ff6028614027d1db4e32f';
+                    that.P3XTokenAddress = '0x62f4e90736a6e5006b5f5b247195ade67ef5a05b';
                     that.P3DTokenAddr = '0x765a944008f08e8366c4ac4c88db63961f65be79';
                     that.playerbookContractAddr = '0x37ceaad5d949818cba87f155143290a8eb6ae501';
                     $('.p3x-contract-etherscan-link').attr('href', that.etherscanAddr + '/address/' + that.P3XTokenAddress);
