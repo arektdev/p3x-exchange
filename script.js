@@ -1302,7 +1302,7 @@ const P3X = {
                 case "1":
                     $('#network-name').html('<span style="font-size:14px;">Network:</span> <b>Mainnet</b>');
                     that.etherscanAddr = 'https://etherscan.io';
-                    that.P3XTokenAddress = '0xcd45a142d109bbc8b22ff6028614027d1db4e32f';
+                    that.P3XTokenAddress = '0x058a144951e062fc14f310057d2fd9ef0cf5095b';
                     that.P3DTokenAddr = '0xb3775fb83f7d12a36e0475abdd1fca35c091efbe';
                     that.playerbookContractAddr = '0xD60d353610D9a5Ca478769D371b53CEfAA7B6E4c';
                     $('.p3x-contract-etherscan-link').attr('href', that.etherscanAddr + '/address/' + that.P3XTokenAddress);
@@ -1414,7 +1414,6 @@ const P3X = {
     _setMainValues: async function () {
         await this._setMyGauntlets();
         this._setMasternode();
-        //this._getCurrency();
         this._setUsableBalanceOf();
         this._setBalanceOf();
         this._setDividendsOf();
@@ -1426,7 +1425,6 @@ const P3X = {
         this._setP3DSellPrice();
         this._setSavedReferral();
         this._setStakingRequirement();
-        //this._setFiatPrices();
     },
     start: async function (_web3) {
         window.p3x = this;
